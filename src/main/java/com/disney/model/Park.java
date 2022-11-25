@@ -6,6 +6,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Catalogue {
-  private List<Product> products;
+public class Park {
+  private List<Ticket> tickets;
 }

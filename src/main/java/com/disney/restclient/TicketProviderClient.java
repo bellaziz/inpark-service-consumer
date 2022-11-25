@@ -1,6 +1,6 @@
 package com.disney.restclient;
 
-import com.disney.model.Product;
+import com.disney.model.Ticket;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -9,19 +9,19 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class ProductProviderRestClient {
+public class TicketProviderClient {
 
   private RestTemplate restTemplate;
 
-  @Value("${product.provider.fetch.all.products}")
-  private String allProductsUrl;
+  @Value("${ticket.provider.base.url}")
+  public String ticketProviderUrl;
 
-  public ProductProviderRestClient() {
+  public TicketProviderClient() {
     this.restTemplate = new RestTemplate();
   }
 
-  public List<Product> retrieveAllProducts() {
+  public List<Ticket> retrieveAllTickets() {
     return Arrays.asList(
-        Objects.requireNonNull(restTemplate.getForObject(allProductsUrl, Product[].class)));
+        Objects.requireNonNull(restTemplate.getForObject(ticketProviderUrl+"/tickets", Ticket[].class)));
   }
 }
